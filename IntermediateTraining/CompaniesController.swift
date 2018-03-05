@@ -8,11 +8,16 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class CompaniesController: UITableViewController {
+    
+    let companies = [Company(name: "Apple", founded: Date()),
+                     Company(name: "Google", founded: Date()),
+                     Company(name: "Facebook", founded: Date())
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         
         view.backgroundColor = UIColor.white
         
@@ -26,8 +31,6 @@ class ViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
         
-        setupNavigationStyle()
-    
         // registration of a cell class named "cellId"
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
         
@@ -36,6 +39,14 @@ class ViewController: UITableViewController {
     // function called on plus button tapped
     @objc func handleAddCompany() {
         print("Adding company...")
+        
+        let createCompanyController = CreateCompanyController()
+//        createCompanyController.view.backgroundColor = .green
+        
+        let navController = CustomNavigationController(rootViewController: createCompanyController)
+        
+        present(navController, animated: true, completion: nil)
+        
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -52,9 +63,9 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
         
-        
+        let company = companies[indexPath.row]
         cell.backgroundColor = UIColor.tealColor
-        cell.textLabel?.text = "THE COMPANY NAME"
+        cell.textLabel?.text = company.name
         cell.textLabel?.textColor = .white
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
@@ -62,26 +73,9 @@ class ViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8 // arbitrary
+        return companies.count
     }
     
-    
-    func setupNavigationStyle() {
-        navigationController?.navigationBar.isTranslucent = false
-        
-        // Creation of lightRed custom color
-        
-        // Nav Bar Color
-        navigationController?.navigationBar.barTintColor = .lightRed
-        // Setup large title
-        navigationController?.navigationBar.prefersLargeTitles = true
-        // Small title
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-        // Big title
-        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-    }
-    
-  
 
 }
 

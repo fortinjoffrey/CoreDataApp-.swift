@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		DDF3E7B7204D85EF00D8293D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3E7B6204D85EF00D8293D /* AppDelegate.swift */; };
-		DDF3E7B9204D85EF00D8293D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3E7B8204D85EF00D8293D /* ViewController.swift */; };
+		DDF3E7B9204D85EF00D8293D /* CompaniesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3E7B8204D85EF00D8293D /* CompaniesController.swift */; };
 		DDF3E7BC204D85EF00D8293D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF3E7BA204D85EF00D8293D /* Main.storyboard */; };
 		DDF3E7BE204D85EF00D8293D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DDF3E7BD204D85EF00D8293D /* Assets.xcassets */; };
 		DDF3E7C1204D85EF00D8293D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF3E7BF204D85EF00D8293D /* LaunchScreen.storyboard */; };
 		DDF3E7C9204D903600D8293D /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3E7C8204D903600D8293D /* UIColor+theme.swift */; };
+		DDF3E7CB204D972300D8293D /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3E7CA204D972300D8293D /* Company.swift */; };
+		DDF3E7CD204D9AD300D8293D /* CreateCompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3E7CC204D9AD300D8293D /* CreateCompanyController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DDF3E7B3204D85EF00D8293D /* IntermediateTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntermediateTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF3E7B6204D85EF00D8293D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DDF3E7B8204D85EF00D8293D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DDF3E7B8204D85EF00D8293D /* CompaniesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesController.swift; sourceTree = "<group>"; };
 		DDF3E7BB204D85EF00D8293D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DDF3E7BD204D85EF00D8293D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DDF3E7C0204D85EF00D8293D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DDF3E7C2204D85EF00D8293D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DDF3E7C8204D903600D8293D /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
+		DDF3E7CA204D972300D8293D /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		DDF3E7CC204D9AD300D8293D /* CreateCompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +61,14 @@
 			isa = PBXGroup;
 			children = (
 				DDF3E7B6204D85EF00D8293D /* AppDelegate.swift */,
-				DDF3E7B8204D85EF00D8293D /* ViewController.swift */,
+				DDF3E7B8204D85EF00D8293D /* CompaniesController.swift */,
 				DDF3E7BA204D85EF00D8293D /* Main.storyboard */,
 				DDF3E7BD204D85EF00D8293D /* Assets.xcassets */,
 				DDF3E7BF204D85EF00D8293D /* LaunchScreen.storyboard */,
 				DDF3E7C2204D85EF00D8293D /* Info.plist */,
 				DDF3E7C8204D903600D8293D /* UIColor+theme.swift */,
+				DDF3E7CA204D972300D8293D /* Company.swift */,
+				DDF3E7CC204D9AD300D8293D /* CreateCompanyController.swift */,
 			);
 			path = IntermediateTraining;
 			sourceTree = "<group>";
@@ -140,8 +146,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DDF3E7C9204D903600D8293D /* UIColor+theme.swift in Sources */,
-				DDF3E7B9204D85EF00D8293D /* ViewController.swift in Sources */,
+				DDF3E7B9204D85EF00D8293D /* CompaniesController.swift in Sources */,
+				DDF3E7CD204D9AD300D8293D /* CreateCompanyController.swift in Sources */,
 				DDF3E7B7204D85EF00D8293D /* AppDelegate.swift in Sources */,
+				DDF3E7CB204D972300D8293D /* Company.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
