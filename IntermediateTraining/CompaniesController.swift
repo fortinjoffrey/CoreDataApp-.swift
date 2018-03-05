@@ -8,16 +8,21 @@
 
 import UIKit
 
-class CompaniesController: UITableViewController {
+class CompaniesController: UITableViewController, CreateCompanyControllerDelegate {
+    func didAddCompany(company: Company) {
+        companies.append(company)
+        let newIndexPath = IndexPath(row: companies.count - 1, section: 0)
+        tableView.insertRows(at: [newIndexPath], with: .automatic)
+    }
     
-    let companies = [Company(name: "Apple", founded: Date()),
+    
+    var companies = [Company(name: "Apple", founded: Date()),
                      Company(name: "Google", founded: Date()),
                      Company(name: "Facebook", founded: Date())
     ]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         view.backgroundColor = UIColor.white
         
@@ -36,14 +41,12 @@ class CompaniesController: UITableViewController {
         
     }
     
-    // function called on plus button tapped
     @objc func handleAddCompany() {
-        print("Adding company...")
         
         let createCompanyController = CreateCompanyController()
-//        createCompanyController.view.backgroundColor = .green
-        
         let navController = CustomNavigationController(rootViewController: createCompanyController)
+        
+        createCompanyController.delegate = self
         
         present(navController, animated: true, completion: nil)
         
