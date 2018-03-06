@@ -17,23 +17,11 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
     }
     
     var companies = [Company]()
-//    var companies = [Company(name: "Apple", founded: Date()),
-//                     Company(name: "Google", founded: Date()),
-//                     Company(name: "Facebook", founded: Date())
-//    ]
+
     
     private func fetchCompanies() {
-        // attempt my core data fetch somehow..
-        // initialization of our Core Data stack
-        let persistentContainer = NSPersistentContainer(name: "IntermediateTrainingModels")
-        persistentContainer.loadPersistentStores { (storeDescription, err) in
-            if let err = err {
-                fatalError("Loading of store failed: \(err)")
-            }
-        }
         
-        let context = persistentContainer.viewContext
-        // end initialization
+        let context = CoreDataManager.shared.persistentContainer.viewContext        
         
         let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
         do {
@@ -41,6 +29,10 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
             companies.forEach({ (company) in
                 print(company.name ?? "")
             })
+            
+            self.companies = companies
+            self.tableView.reloadData()
+            
         } catch let fetchErr {
             print("Failed to fetch companies:", fetchErr)
         }
