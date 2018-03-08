@@ -25,7 +25,7 @@ class CompaniesController: UITableViewController {
         // The footer represents the rest of the table view. Remove lines from it
         tableView.tableFooterView = UIView() // blank UIView
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleAddCompany))
+        setupPlusButtonInNavBar(selector: #selector(handleAddCompany))
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
         
@@ -35,7 +35,7 @@ class CompaniesController: UITableViewController {
     
     @objc private func handleReset() {
         print("Attempting to delete all core data obnects")
-        let context = CoreDataManager.shared.persistentContainer.viewContext        
+        let context = CoreDataManager.shared.persistentContainer.viewContext
         let batchDeleteRequest = NSBatchDeleteRequest(fetchRequest: Company.fetchRequest())
         
         do {

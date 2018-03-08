@@ -111,7 +111,7 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
         
         setupUI()
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        setupCancelButton()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
         
@@ -209,8 +209,5 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
             print("Failed to save company:", saveErr)
         }
     }
-    
-    @objc func handleCancel() {
-        dismiss(animated: true, completion: nil)
-    }
+
 }
