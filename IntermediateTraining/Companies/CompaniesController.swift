@@ -68,7 +68,7 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         
         
         // registration of a cell class named "cellId"
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cellId")
+        tableView.register(CompanyCell.self, forCellReuseIdentifier: "cellId")
         
     }
     
@@ -129,33 +129,15 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         return 50
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! CompanyCell
         
         let company = companies[indexPath.row]
-        cell.backgroundColor = UIColor.tealColor
-        
-        if let name = company.name, let founded = company.founded {
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMM dd, yyyy"
-            let foundedDateString = dateFormatter.string(from: founded)
-            
-            let dateString = "\(name) - Founded: \(foundedDateString)"
-            cell.textLabel?.text = dateString
-        } else {
-            cell.textLabel?.text = company.name
-        }
-        
-        
-        cell.textLabel?.textColor = .white
-        cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
-        if let imageData = company.imageData {
-            cell.imageView?.image = UIImage(data: imageData)
-        }
-        
+        cell.company = company
         return cell
     }
     
