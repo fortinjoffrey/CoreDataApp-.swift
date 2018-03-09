@@ -64,11 +64,7 @@ class CompanyCell: UITableViewCell {
         nameFoundeDateLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
         nameFoundeDateLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         nameFoundeDateLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
-        
-        
-        
-        
+
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -31,39 +31,71 @@ class CreateEmployeeController: UIViewController {
         return textField
     }()
     
+    let birthdayLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Birthday"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    let birthdayTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "MM/dd/yyyy"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkBlue
         navigationItem.title = "Create Employee"
         setupCancelButton()
-        _ = setupLightBlueBackgroundView(height: 50)
-        
         setupUI()
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
-        
     }
     
     @objc private func handleSave() {        
         guard let employeeName = nameTextField.text else { return }
         guard let company = self.company else { return }
+        guard let birthdayText = birthdayTextField.text else { return }
         
-        // where do we got company from ?
-        let tuple = CoreDataManager.shared.createEmployee(employeeName: employeeName, company: company)
+        // perform validation step here
+        if birthdayText.isEmpty {
+            showError(title: "Empty Birthday", message: "You have not entered a birthday", action: "Ok")
+            return
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy"
+        guard let birthdayDate = dateFormatter.date(from: birthdayText) else {
+            showError(title: "Bad birthday date", message: "Birthday date entered not valid", action: "Ok")
+            return
+        }
+        
+        let tuple = CoreDataManager.shared.createEmployee(employeeName: employeeName, birthday: birthdayDate, company: company)
         if let error = tuple.1 {
             // use a uialertcontroller to show error message
             print(error)
         } else {
-            // creation success
             dismiss(animated: true, completion: {
-                // we'll call the delegate
                 self.delegate?.didAddEmploee(employee: tuple.0!)
             })
-            dismiss(animated: true, completion: nil)
         }
     }
     
+    private func birthdayValidation() {
+        
+    }
+    
+    
+    private func showError(title: String, message: String, action: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: action, style: .default, handler: nil))
+        present(alertController, animated: true, completion: nil)
+    }
+    
     private func setupUI() {
+        _ = setupLightBlueBackgroundView(height: 100)
         
         view.addSubview(nameLabel)
         nameLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -77,8 +109,16 @@ class CreateEmployeeController: UIViewController {
         nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         nameTextField.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         
+        view.addSubview(birthdayLabel)
+        birthdayLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        birthdayLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
+        birthdayLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        birthdayLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        view.addSubview(birthdayTextField)
+        birthdayTextField.topAnchor.constraint(equalTo: birthdayLabel.topAnchor).isActive = true
+        birthdayTextField.leftAnchor.constraint(equalTo: birthdayLabel.rightAnchor).isActive = true
+        birthdayTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        birthdayTextField.bottomAnchor.constraint(equalTo: birthdayLabel.bottomAnchor).isActive = true        
     }
-    
-    
-    
 }
