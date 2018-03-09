@@ -15,6 +15,14 @@ class EmployeesController: UITableViewController {
     var employees = [Employee]()
     let cellId = "cellId"
     
+    
+    
+    var shortNameEmployees = [Employee]()
+    var longNameEmployees = [Employee]()
+    var reallyLongNameEmployees = [Employee]()
+    
+    var allEmployees = [[Employee]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = company?.name
@@ -26,7 +34,31 @@ class EmployeesController: UITableViewController {
     
     private func fetchEmployees() {
         guard let companyEmployees = company?.employees?.allObjects as? [Employee] else { return }
-        self.employees = companyEmployees
+//        self.employees = companyEmployees
+        
+        shortNameEmployees = companyEmployees.filter({ (employee) -> Bool in
+            if let count = employee.name?.count {
+                return count < 6
+            }
+            return false
+        })
+        
+        longNameEmployees = companyEmployees.filter({ (employee) -> Bool in
+            if let count = employee.name?.count {
+                return count > 6 && count < 9
+            }
+            return false
+        })
+        
+        reallyLongNameEmployees = companyEmployees.filter({ (employee) -> Bool in
+            if let count = employee.name?.count {
+                return count > 9
+            }
+            return false
+        })
+        
+        allEmployees = [shortNameEmployees, longNameEmployees, reallyLongNameEmployees]
+        
     }
     
     @objc private func handleAdd() {

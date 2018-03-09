@@ -8,15 +8,41 @@
 
 import UIKit
 
-extension EmployeesController {
+extension EmployeesController {    
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return allEmployees.count
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = IndentedLabel()
+        if section == 0 {
+            label.text = "Short names"
+        } else if section == 1 {
+            label.text = "Long names"
+        } else {
+            label.text = "Really long names"
+        }
+        label.backgroundColor = .lightBlue
+        label.textColor = .darkBlue
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return employees.count
+        return allEmployees[section].count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
-        let employee = employees[indexPath.row]
+//        let employee = employees[indexPath.row]
+       
+        let employee = allEmployees[indexPath.section][indexPath.row]
+        
         cell.textLabel?.text = employee.name
         
         if let birthday = employee.employeeInformation?.birthday {
