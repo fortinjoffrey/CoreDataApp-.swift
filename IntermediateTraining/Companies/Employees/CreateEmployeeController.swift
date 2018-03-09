@@ -43,8 +43,7 @@ class CreateEmployeeController: UIViewController {
         
     }
     
-    @objc private func handleSave() {
-        
+    @objc private func handleSave() {        
         guard let employeeName = nameTextField.text else { return }
         let tuple = CoreDataManager.shared.createEmployee(employeeName: employeeName)
         if let error = tuple.1 {
@@ -58,7 +57,6 @@ class CreateEmployeeController: UIViewController {
             })
             dismiss(animated: true, completion: nil)
         }
-        
     }
     
     private func setupUI() {
