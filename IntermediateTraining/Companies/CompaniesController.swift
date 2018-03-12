@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 class CompaniesController: UITableViewController {
-
+    
     var companies = [Company]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +27,11 @@ class CompaniesController: UITableViewController {
         
         setupPlusButtonInNavBar(selector: #selector(handleAddCompany))
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset))
+        navigationItem.leftBarButtonItems = [
+            UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset)),
+            UIBarButtonItem(title: "Do work", style: .plain, target: self, action: #selector(doWork))
+        ]
+        
         
         // registration of a cell class named "cellId"
         tableView.register(CompanyCell.self, forCellReuseIdentifier: "cellId")
@@ -59,4 +63,27 @@ class CompaniesController: UITableViewController {
         createCompanyController.delegate = self
         present(navController, animated: true, completion: nil)
     }
+    
+    @objc private func doWork() {
+        print("Trying to do work...")
+        // GCD - Grand Central Dispatch
+        // to perform task in background
+        DispatchQueue.global(qos: .background).async {
+        }
+        
+        CoreDataManager.shared.persistentContainer.performBackgroundTask({ (backgroundContext) in
+            (0...20000).forEach { (value) in
+                let company = Company(context: backgroundContext)
+                print(value)
+                company.name = String(value)
+            }
+            
+            do {
+                try backgroundContext.save()
+            } catch let err {
+                print("Failed to save:", err)
+            }
+        })
+    }
+    
 }
