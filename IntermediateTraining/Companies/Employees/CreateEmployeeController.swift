@@ -45,6 +45,15 @@ class CreateEmployeeController: UIViewController {
         return textField
     }()
     
+    let employeeTypeSegmentedControl: UISegmentedControl = {
+        let types = ["Executive", "Senior Management", "Staff"]
+        let sc = UISegmentedControl(items: types)
+        sc.selectedSegmentIndex = 0
+        sc.tintColor = UIColor.darkBlue
+        sc.translatesAutoresizingMaskIntoConstraints = false
+        return sc
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .darkBlue
@@ -72,7 +81,9 @@ class CreateEmployeeController: UIViewController {
             return
         }
         
-        let tuple = CoreDataManager.shared.createEmployee(employeeName: employeeName, birthday: birthdayDate, company: company)
+        guard let employeeType = employeeTypeSegmentedControl.titleForSegment(at: employeeTypeSegmentedControl.selectedSegmentIndex) else { return }
+        
+        let tuple = CoreDataManager.shared.createEmployee(employeeName: employeeName, employeeType: employeeType, birthday: birthdayDate, company: company)
         if let error = tuple.1 {
             // use a uialertcontroller to show error message
             print(error)
@@ -83,11 +94,6 @@ class CreateEmployeeController: UIViewController {
         }
     }
     
-    private func birthdayValidation() {
-        
-    }
-    
-    
     private func showError(title: String, message: String, action: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: action, style: .default, handler: nil))
@@ -95,7 +101,7 @@ class CreateEmployeeController: UIViewController {
     }
     
     private func setupUI() {
-        _ = setupLightBlueBackgroundView(height: 100)
+        _ = setupLightBlueBackgroundView(height: 150)
         
         view.addSubview(nameLabel)
         nameLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -119,6 +125,13 @@ class CreateEmployeeController: UIViewController {
         birthdayTextField.topAnchor.constraint(equalTo: birthdayLabel.topAnchor).isActive = true
         birthdayTextField.leftAnchor.constraint(equalTo: birthdayLabel.rightAnchor).isActive = true
         birthdayTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        birthdayTextField.bottomAnchor.constraint(equalTo: birthdayLabel.bottomAnchor).isActive = true        
+        birthdayTextField.bottomAnchor.constraint(equalTo: birthdayLabel.bottomAnchor).isActive = true
+        
+        view.addSubview(employeeTypeSegmentedControl)
+        employeeTypeSegmentedControl.topAnchor.constraint(equalTo: birthdayLabel.bottomAnchor, constant: 0).isActive = true
+        employeeTypeSegmentedControl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
+        employeeTypeSegmentedControl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
+        employeeTypeSegmentedControl.heightAnchor.constraint(equalToConstant: 34).isActive = true
+        
     }
 }
