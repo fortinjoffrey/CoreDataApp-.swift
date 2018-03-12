@@ -16,13 +16,9 @@ extension EmployeesController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = IndentedLabel()
-        if section == 0 {
-            label.text = "Short names"
-        } else if section == 1 {
-            label.text = "Long names"
-        } else {
-            label.text = "Really long names"
-        }
+        
+        label.text = employeeTypes[section]
+        
         label.backgroundColor = .lightBlue
         label.textColor = .darkBlue
         label.font = UIFont.boldSystemFont(ofSize: 16)

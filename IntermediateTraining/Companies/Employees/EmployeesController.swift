@@ -15,13 +15,13 @@ class EmployeesController: UITableViewController {
     var employees = [Employee]()
     let cellId = "cellId"
     
-    
-    
-    var shortNameEmployees = [Employee]()
-    var longNameEmployees = [Employee]()
-    var reallyLongNameEmployees = [Employee]()
-    
     var allEmployees = [[Employee]]()
+    
+    var employeeTypes = [
+        EmployeeType.Executive.rawValue,
+        EmployeeType.SeniorManagement.rawValue,
+        EmployeeType.Staff.rawValue
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,33 +32,16 @@ class EmployeesController: UITableViewController {
         fetchEmployees()
     }
     
-    private func fetchEmployees() {
+    func fetchEmployees() {
         guard let companyEmployees = company?.employees?.allObjects as? [Employee] else { return }
-//        self.employees = companyEmployees
+
+        allEmployees = []
         
-        shortNameEmployees = companyEmployees.filter({ (employee) -> Bool in
-            if let count = employee.name?.count {
-                return count < 6
-            }
-            return false
-        })
-        
-        longNameEmployees = companyEmployees.filter({ (employee) -> Bool in
-            if let count = employee.name?.count {
-                return count > 6 && count < 9
-            }
-            return false
-        })
-        
-        reallyLongNameEmployees = companyEmployees.filter({ (employee) -> Bool in
-            if let count = employee.name?.count {
-                return count > 9
-            }
-            return false
-        })
-        
-        allEmployees = [shortNameEmployees, longNameEmployees, reallyLongNameEmployees]
-        
+        employeeTypes.forEach { (employeeType) in
+            allEmployees.append(
+                companyEmployees.filter { $0.type == employeeType }
+            )
+        }
     }
     
     @objc private func handleAdd() {
