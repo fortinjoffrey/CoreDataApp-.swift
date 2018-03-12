@@ -40,7 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         // Main UI
-        let companiesController = CompaniesController()
+//        let companiesController = CompaniesController()
+        let companiesController = CompaniesAutoUpdateController()
         //dummyViewController.view.backgroundColor = UIColor.blue
         let navController = CustomNavigationController(rootViewController: companiesController)
         window?.rootViewController = navController
