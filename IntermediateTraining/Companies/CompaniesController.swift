@@ -29,7 +29,7 @@ class CompaniesController: UITableViewController {
         
         navigationItem.leftBarButtonItems = [
             UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset)),
-            UIBarButtonItem(title: "Do work", style: .plain, target: self, action: #selector(doWork))
+            UIBarButtonItem(title: "Do Updates", style: .plain, target: self, action: #selector(doUpdates))
         ]
         
         
@@ -72,7 +72,7 @@ class CompaniesController: UITableViewController {
         }
         
         CoreDataManager.shared.persistentContainer.performBackgroundTask({ (backgroundContext) in
-            (0...20000).forEach { (value) in
+            (0...5).forEach { (value) in
                 let company = Company(context: backgroundContext)
                 print(value)
                 company.name = String(value)
@@ -80,10 +80,39 @@ class CompaniesController: UITableViewController {
             
             do {
                 try backgroundContext.save()
+                DispatchQueue.main.async {
+                    self.companies = CoreDataManager.shared.fetchCompanies()
+                    self.tableView.reloadData()
+                }
             } catch let err {
                 print("Failed to save:", err)
             }
         })
+    }
+    
+    
+    // let's do some tricky updates with core data
+    @objc private func doUpdates() {
+        print("Trying to update companies on a backfgorund context")
+        CoreDataManager.shared.persistentContainer.performBackgroundTask { (backgroundContext) in
+            let request: NSFetchRequest<Company> = Company.fetchRequest()
+            do {
+                let companies = try backgroundContext.fetch(request)
+                companies.forEach({ (company) in
+                    print(company.name ?? "")
+                    company.name = "A: \(company.name ?? "")"
+                })
+                
+                do {
+                    try backgroundContext.save()
+                } catch let saveErr {
+                    print("Failed t osave on background:", saveErr)
+                }
+            } catch let err {
+                print("Failed t ofetch companies on background:", err)
+            }
+            
+        }
     }
     
 }
