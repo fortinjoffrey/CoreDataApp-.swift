@@ -13,6 +13,7 @@
 		DD76CDD02052D47D00BD8A21 /* EmployeesController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD76CDCF2052D47D00BD8A21 /* EmployeesController+UITableView.swift */; };
 		DD76CDD22052D53500BD8A21 /* EmployeesController+CreateEmployee.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD76CDD12052D53500BD8A21 /* EmployeesController+CreateEmployee.swift */; };
 		DD76CDD4205309F100BD8A21 /* IndentedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD76CDD3205309F100BD8A21 /* IndentedLabel.swift */; };
+		DDB296C72057CD79004624E5 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDB296C62057CD79004624E5 /* Service.swift */; };
 		DDBED5E8205678400078386D /* EmployeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDBED5E7205678400078386D /* EmployeeType.swift */; };
 		DDCE8F20205183A000C89719 /* CompaniesController+CreateCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE8F1F205183A000C89719 /* CompaniesController+CreateCompany.swift */; };
 		DDCE8F22205184A200C89719 /* CompaniesController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE8F21205184A200C89719 /* CompaniesController+UITableView.swift */; };
@@ -37,6 +38,7 @@
 		DD76CDCF2052D47D00BD8A21 /* EmployeesController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeesController+UITableView.swift"; sourceTree = "<group>"; };
 		DD76CDD12052D53500BD8A21 /* EmployeesController+CreateEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeesController+CreateEmployee.swift"; sourceTree = "<group>"; };
 		DD76CDD3205309F100BD8A21 /* IndentedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentedLabel.swift; sourceTree = "<group>"; };
+		DDB296C62057CD79004624E5 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		DDBED5E7205678400078386D /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
 		DDCE8F1F205183A000C89719 /* CompaniesController+CreateCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesController+CreateCompany.swift"; sourceTree = "<group>"; };
 		DDCE8F21205184A200C89719 /* CompaniesController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesController+UITableView.swift"; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				DDCE8F1F205183A000C89719 /* CompaniesController+CreateCompany.swift */,
 				DDCE8F21205184A200C89719 /* CompaniesController+UITableView.swift */,
 				DD6673532056B492003FAB48 /* CompaniesAutoUpdateController.swift */,
+				DDB296C62057CD79004624E5 /* Service.swift */,
 			);
 			path = Companies;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				DDF3E7CD204D9AD300D8293D /* CreateCompanyController.swift in Sources */,
 				DDCE8F2720519F9D00C89719 /* UIViewController+Helpers.swift in Sources */,
 				DD0AA51B20515C1A00F357D7 /* CompanyCell.swift in Sources */,
+				DDB296C72057CD79004624E5 /* Service.swift in Sources */,
 				DDCE8F22205184A200C89719 /* CompaniesController+UITableView.swift in Sources */,
 				DD76CDD4205309F100BD8A21 /* IndentedLabel.swift in Sources */,
 				DDCE8F292051A0AA00C89719 /* CreateEmployeeController.swift in Sources */,
