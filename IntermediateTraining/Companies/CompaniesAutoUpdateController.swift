@@ -42,8 +42,17 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
 //        fetchedResultsControler.fetchedObjects?.forEach({ (company) in
 //            print(company.name ?? "")
 //        })
-        Service.shared.downloadCompaniesFromServer()
+//        Service.shared.downloadCompaniesFromServer()
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        refreshControl.tintColor = .white
+        self.refreshControl = refreshControl        
+    }
+    
+    @objc func handleRefresh() {
+        Service.shared.downloadCompaniesFromServer()
+        refreshControl?.endRefreshing()
     }
     
     let cellId = "cellId"
@@ -104,6 +113,12 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
   
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let employeesListController = EmployeesController()
+        employeesListController.company = fetchedResultsControler.object(at: indexPath)
+        navigationController?.pushViewController(employeesListController, animated: true)
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, sectionIndexTitleForSectionName sectionName: String) -> String? {
