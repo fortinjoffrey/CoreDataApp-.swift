@@ -39,6 +39,7 @@
 		DD76CDD12052D53500BD8A21 /* EmployeesController+CreateEmployee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeesController+CreateEmployee.swift"; sourceTree = "<group>"; };
 		DD76CDD3205309F100BD8A21 /* IndentedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndentedLabel.swift; sourceTree = "<group>"; };
 		DDB296C62057CD79004624E5 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		DDB296C82057D9B5004624E5 /* IntermediateTrainingModels_v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = IntermediateTrainingModels_v1.1.xcdatamodel; sourceTree = "<group>"; };
 		DDBED5E7205678400078386D /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
 		DDCE8F1F205183A000C89719 /* CompaniesController+CreateCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesController+CreateCompany.swift"; sourceTree = "<group>"; };
 		DDCE8F21205184A200C89719 /* CompaniesController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesController+UITableView.swift"; sourceTree = "<group>"; };
@@ -419,9 +420,10 @@
 		DDF3E7F2204DBB4E00D8293D /* IntermediateTrainingModels.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				DDB296C82057D9B5004624E5 /* IntermediateTrainingModels_v1.1.xcdatamodel */,
 				DDF3E7F3204DBB4E00D8293D /* IntermediateTrainingModels.xcdatamodel */,
 			);
-			currentVersion = DDF3E7F3204DBB4E00D8293D /* IntermediateTrainingModels.xcdatamodel */;
+			currentVersion = DDB296C82057D9B5004624E5 /* IntermediateTrainingModels_v1.1.xcdatamodel */;
 			path = IntermediateTrainingModels.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
