@@ -27,6 +27,8 @@ class CompaniesController: UITableViewController {
         
         setupPlusButtonInNavBar(selector: #selector(handleAddCompany))
         
+        navigationController?.navigationBar.backgroundColor = .lightRed
+
         navigationItem.leftBarButtonItems = [
             UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleReset)),
             UIBarButtonItem(title: "Nested Updates", style: .plain, target: self, action: #selector(doNestedUpdates))
@@ -61,6 +63,9 @@ class CompaniesController: UITableViewController {
         let createCompanyController = CreateCompanyController()
         let navController = CustomNavigationController(rootViewController: createCompanyController)
         createCompanyController.delegate = self
+        
+        navController.modalPresentationStyle = .fullScreen
+        
         present(navController, animated: true, completion: nil)
     }
     

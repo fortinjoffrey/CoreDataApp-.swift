@@ -14,6 +14,19 @@ class CompanyCell: UITableViewCell {
         didSet {
             if let imageData = company?.imageData {
                 companyImageView.image = UIImage(data: imageData)
+            } else if let photoUrl = company?.photoUrl {
+                
+                if let imageURL = URL(string: photoUrl) {
+                    // just not to cause a deadlock in UI!
+                    DispatchQueue.global().async {
+                        guard let imageData = try? Data(contentsOf: imageURL) else { return }
+                        
+                        let image = UIImage(data: imageData)
+                        DispatchQueue.main.async {
+                            self.companyImageView.image = image
+                        }
+                    }
+                }
             }
             
             if let name = company?.name, let founded = company?.founded {

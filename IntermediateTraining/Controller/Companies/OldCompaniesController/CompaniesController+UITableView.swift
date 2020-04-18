@@ -47,6 +47,9 @@ extension CompaniesController {
         editCompanyController.delegate = self
         editCompanyController.company = companies[indexPath.row]
         let navController = CustomNavigationController(rootViewController: editCompanyController)
+        
+        navController.modalPresentationStyle = .fullScreen
+
         present(navController, animated: true, completion: nil)
         
     }

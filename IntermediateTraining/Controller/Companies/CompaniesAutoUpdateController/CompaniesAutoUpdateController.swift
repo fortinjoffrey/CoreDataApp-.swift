@@ -11,14 +11,13 @@ import CoreData
 
 class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    // warning: this code here is going to be a bit of a monster
     lazy var fetchedResultsControler: NSFetchedResultsController<Company> = {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         let request: NSFetchRequest<Company> = Company.fetchRequest()
         request.sortDescriptors = [ NSSortDescriptor(key: "name", ascending: true) ] // if true sorted A-Z
         
         let frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: context, sectionNameKeyPath: "name", cacheName: nil)
-        
+
         frc.delegate = self
         
         do {
@@ -31,20 +30,21 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
+
+        
         navigationItem.title = "Company Auto Updates"
         navigationItem.leftBarButtonItems = [
-            UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(handleAdd)),
-            UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(handleDelete))
+            UIBarButtonItem(title: "Delete all", style: .plain, target: self, action: #selector(handleDeleteAll))
         ]
+        
         
         navigationController?.navigationBar.backgroundColor = .lightRed
         
+             setupPlusButtonInNavBar(selector: #selector(handleAdd))
+        
         tableView.backgroundColor = UIColor.darkBlue
         tableView.register(CompanyCell.self, forCellReuseIdentifier: cellId)
-//        fetchedResultsControler.fetchedObjects?.forEach({ (company) in
-//            print(company.name ?? "")
-//        })
-//        Service.shared.downloadCompaniesFromServer()
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
@@ -60,19 +60,19 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
     let cellId = "cellId"
     
     @objc private func handleAdd() {
-        print("Let's add a company called bmw")
         
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        let company = Company(context: context)
-        company.name = "CD-ROM"
-        do {
-            try context.save()
-        } catch let saveErr {
-            print("Failed to save BMW company", saveErr)
-        }
+        let createCompanyController = CreateCompanyController()
+        let navController = CustomNavigationController(rootViewController: createCompanyController)
+        createCompanyController.delegate = self
+        
+        navController.modalPresentationStyle = .fullScreen
+        
+        present(navController, animated: true, completion: nil)
+        
+        
     }
     
-    @objc private func handleDelete() {
+    @objc private func handleDeleteAll() {
         let request: NSFetchRequest<Company> = Company.fetchRequest()
 //        request.predicate = NSPredicate(format: "name CONTAINS %@", "B")
         
@@ -167,5 +167,42 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
         tableView.endUpdates()
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete", handler: deleteHandlerFunction)
+              deleteAction.backgroundColor = UIColor.lightRed
+              
+              let editAction = UITableViewRowAction(style: .normal, title: "Edit", handler: editHandlerFunction)
+              editAction.backgroundColor = UIColor.darkBlue
+              
+              return [deleteAction, editAction]
+    }
+    
+    private func deleteHandlerFunction(action: UITableViewRowAction, indexPath: IndexPath) {
+        
+         let company = fetchedResultsControler.object(at: indexPath)
+        
+                let context = CoreDataManager.shared.persistentContainer.viewContext
+        context.delete(company)
+        
+           try? context.save()
+        
+    }
+    private func editHandlerFunction(action: UITableViewRowAction, indexPath: IndexPath) {
+        
+        let editCompanyController = CreateCompanyController()
+        editCompanyController.delegate = self
+        
+        let company = fetchedResultsControler.object(at: indexPath)
+        
+        editCompanyController.company = company
+        
+        let navController = CustomNavigationController(rootViewController: editCompanyController)
+        
+        navController.modalPresentationStyle = .fullScreen
+
+        present(navController, animated: true, completion: nil)
+        
+    }
     
 }

@@ -31,9 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationBarAppearance = UINavigationBar.appearance()
         
-//        navigationBarAppearance.tintColor = .white
+        navigationBarAppearance.barStyle = .blackTranslucent
         navigationBarAppearance.tintColor = .white
-        navigationBarAppearance.isTranslucent = false
+        navigationBarAppearance.isTranslucent = true
         navigationBarAppearance.barTintColor = .lightRed
         navigationBarAppearance.prefersLargeTitles = true
         navigationBarAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
@@ -45,7 +45,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Main UI
 //        let companiesController = CompaniesController()
         let companiesController = CompaniesAutoUpdateController()
-        //dummyViewController.view.backgroundColor = UIColor.blue
         let navController = CustomNavigationController(rootViewController: companiesController)
         window?.rootViewController = navController
         

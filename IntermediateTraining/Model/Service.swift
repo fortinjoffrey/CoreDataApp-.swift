@@ -45,6 +45,7 @@ struct Service {
                     dateFormatter.dateFormat = "MM/dd/yyyy"
                     let foundedDate = dateFormatter.date(from: jsonCompany.founded)
                     company.founded = foundedDate
+                    company.photoUrl = jsonCompany.photoUrl
                     
                     jsonCompany.employees?.forEach({ (jsonEmployee) in
                         print("  \(jsonEmployee.name)")
