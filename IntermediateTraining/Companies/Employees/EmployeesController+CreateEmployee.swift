@@ -14,7 +14,7 @@ extension EmployeesController: CreateEmployeeControllerDelegate {
 //        fetchEmployees()
 //        tableView.reloadData()
         
-        guard let section = employeeTypes.index(of: employee.type!) else { return }
+        guard let section = employeeTypes.firstIndex(of: employee.type!) else { return }
         let row = allEmployees[section].count
         let insertionIndexPath = IndexPath(row: row, section: section)
         

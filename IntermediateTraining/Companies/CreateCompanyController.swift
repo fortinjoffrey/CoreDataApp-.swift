@@ -45,7 +45,6 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
     // lazy var enables self to not be nil
     lazy var companyImageView : UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true // remember to do this
         imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
@@ -64,11 +63,14 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         
-        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+        if let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
             companyImageView.image = editedImage
-        } else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        } else if let originalImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)] as? UIImage {
             companyImageView.image = originalImage
         }
         
@@ -81,22 +83,18 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
-        // enable autolayout
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let nameTextField: UITextField = {
        let textField = UITextField()
         textField.placeholder = "Enter name"
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
 
     let datePicker: UIDatePicker = {
        let dp = UIDatePicker()
         dp.datePickerMode = .date
-        dp.translatesAutoresizingMaskIntoConstraints = false
         return dp
     }()
     
@@ -121,32 +119,18 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
     private func setupUI() {
         let lightBlueBackgroundView = setupLightBlueBackgroundView(height: 350)
         
-        view.addSubview(companyImageView)
-        companyImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
-        companyImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        [companyImageView, nameLabel, nameTextField, datePicker].forEach {
+            view.addSubview($0)
+        }
+        
+        companyImageView.anchor(left: nil, top: view.topAnchor, right: nil, bottom: nil, leftPadding: 0, topPadding: 8, rightPadding: 0, bottomPadding: 0, width: 100, height: 100)
         companyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        companyImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
+        nameLabel.anchor(left: view.leftAnchor, top: companyImageView.bottomAnchor, right: nil, bottom: nil, leftPadding: 16, topPadding: 0, rightPadding: 0, bottomPadding: 0, width: 100, height: 50)
         
-        view.addSubview(nameLabel)
-        nameLabel.topAnchor.constraint(equalTo: companyImageView.bottomAnchor).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        nameTextField.anchor(left: nameLabel.rightAnchor, top: nameLabel.topAnchor, right: view.rightAnchor, bottom: nameLabel.bottomAnchor, leftPadding: 0, topPadding: 0, rightPadding: 0, bottomPadding: 0, width: 0, height: 0)
         
-        view.addSubview(nameTextField)
-        nameTextField.leftAnchor.constraint(equalTo: nameLabel.rightAnchor).isActive = true
-        nameTextField.topAnchor.constraint(equalTo: nameLabel.topAnchor).isActive = true
-        nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        nameTextField.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
-        
-        // setup the date picker
-        view.addSubview(datePicker)
-        datePicker.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
-        datePicker.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        datePicker.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        datePicker.bottomAnchor.constraint(equalTo: lightBlueBackgroundView.bottomAnchor).isActive = true
-        
+        datePicker.anchor(left: view.leftAnchor, top: nameLabel.bottomAnchor, right: view.rightAnchor, bottom: lightBlueBackgroundView.bottomAnchor, leftPadding: 0, topPadding: 0, rightPadding: 0, bottomPadding: 0, width: 0, height: 0)
     }
     
     @objc private func handleSave() {
@@ -163,7 +147,7 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
         company?.name = nameTextField.text
         company?.founded = datePicker.date
         if let companyImage = companyImageView.image {
-            company?.imageData = UIImageJPEGRepresentation(companyImage, 0.8)
+            company?.imageData = companyImage.jpegData(compressionQuality: 0.8)
         }
         
         do {
@@ -184,7 +168,7 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
         company.setValue(datePicker.date, forKey: "founded")
         
         if let companyImage = companyImageView.image {
-            let imageData = UIImageJPEGRepresentation(companyImage, 0.8)
+            let imageData = companyImage.jpegData(compressionQuality: 0.8)
             company.setValue(imageData, forKey: "imageData")
         }
         
@@ -201,4 +185,14 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
         }
     }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

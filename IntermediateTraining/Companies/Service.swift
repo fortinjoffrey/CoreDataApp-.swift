@@ -35,7 +35,7 @@ struct Service {
                 
                 let privateContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
                 privateContext.parent = CoreDataManager.shared.persistentContainer.viewContext
-                
+
                 jsonCompanies.forEach({ (jsonCompany) in
                     print(jsonCompany.name)
                     
@@ -84,6 +84,7 @@ struct Service {
 struct JSONCompany: Decodable {
     let name: String
     let founded: String
+    let photoUrl: String
     let employees: [JSONEmployee]?
 }
 

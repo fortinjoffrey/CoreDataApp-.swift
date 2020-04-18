@@ -36,7 +36,6 @@ class CompanyCell: UITableViewCell {
         imageView.clipsToBounds = true
         imageView.layer.borderColor = UIColor.darkBlue.cgColor
         imageView.layer.borderWidth = 2
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -45,26 +44,22 @@ class CompanyCell: UITableViewCell {
         label.text = "Company name"
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = UIColor.tealColor
-        addSubview(companyImageView)
-        companyImageView.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        companyImageView.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        companyImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16).isActive = true
-        companyImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
-        addSubview(nameFoundeDateLabel)
-        nameFoundeDateLabel.leftAnchor.constraint(equalTo: companyImageView.rightAnchor, constant: 8).isActive = true
-        nameFoundeDateLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        nameFoundeDateLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        nameFoundeDateLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        [companyImageView, nameFoundeDateLabel].forEach {
+            addSubview($0)
+        }
+        
+        companyImageView.anchor(left: leftAnchor, top: nil, right: nil, bottom: nil, leftPadding: 16, topPadding: 0, rightPadding: 0, bottomPadding: 0, width: 40, height: 40)
+        companyImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
 
+        nameFoundeDateLabel.anchor(left: companyImageView.rightAnchor, top: topAnchor, right: rightAnchor, bottom: bottomAnchor, leftPadding: 8, topPadding: 0, rightPadding: 0, bottomPadding: 0, width: 0, height: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {

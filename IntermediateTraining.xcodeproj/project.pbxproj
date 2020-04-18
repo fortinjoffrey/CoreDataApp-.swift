@@ -20,6 +20,7 @@
 		DDCE8F24205199EE00C89719 /* EmployeesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE8F23205199EE00C89719 /* EmployeesController.swift */; };
 		DDCE8F2720519F9D00C89719 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE8F2620519F9D00C89719 /* UIViewController+Helpers.swift */; };
 		DDCE8F292051A0AA00C89719 /* CreateEmployeeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDCE8F282051A0AA00C89719 /* CreateEmployeeController.swift */; };
+		DDE6A8E3244B293000ECC284 /* UIView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE6A8E2244B293000ECC284 /* UIView+.swift */; };
 		DDF3E7B7204D85EF00D8293D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3E7B6204D85EF00D8293D /* AppDelegate.swift */; };
 		DDF3E7B9204D85EF00D8293D /* CompaniesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF3E7B8204D85EF00D8293D /* CompaniesController.swift */; };
 		DDF3E7BC204D85EF00D8293D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDF3E7BA204D85EF00D8293D /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		DDCE8F23205199EE00C89719 /* EmployeesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeesController.swift; sourceTree = "<group>"; };
 		DDCE8F2620519F9D00C89719 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		DDCE8F282051A0AA00C89719 /* CreateEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmployeeController.swift; sourceTree = "<group>"; };
+		DDE6A8E2244B293000ECC284 /* UIView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+.swift"; sourceTree = "<group>"; };
 		DDF3E7B3204D85EF00D8293D /* IntermediateTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IntermediateTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDF3E7B6204D85EF00D8293D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DDF3E7B8204D85EF00D8293D /* CompaniesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				DDCE8F2620519F9D00C89719 /* UIViewController+Helpers.swift */,
 				DD76CDD3205309F100BD8A21 /* IndentedLabel.swift */,
+				DDE6A8E2244B293000ECC284 /* UIView+.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -167,11 +170,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = myCode;
 				TargetAttributes = {
 					DDF3E7B2204D85EF00D8293D = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1140;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -216,6 +220,7 @@
 				DDBED5E8205678400078386D /* EmployeeType.swift in Sources */,
 				DDF3E7C9204D903600D8293D /* UIColor+theme.swift in Sources */,
 				DDF3E7B9204D85EF00D8293D /* CompaniesController.swift in Sources */,
+				DDE6A8E3244B293000ECC284 /* UIView+.swift in Sources */,
 				DD76CDD02052D47D00BD8A21 /* EmployeesController+UITableView.swift in Sources */,
 				DD6673542056B492003FAB48 /* CompaniesAutoUpdateController.swift in Sources */,
 				DD76CDD22052D53500BD8A21 /* EmployeesController+CreateEmployee.swift in Sources */,
@@ -270,6 +275,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -277,6 +283,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -327,6 +334,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -334,6 +342,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -373,7 +382,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortinjoffrey.IntermediateTraining;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -388,7 +397,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fortinjoffrey.IntermediateTraining;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

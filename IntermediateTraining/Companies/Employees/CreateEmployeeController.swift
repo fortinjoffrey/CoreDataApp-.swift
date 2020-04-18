@@ -20,28 +20,24 @@ class CreateEmployeeController: UIViewController {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter name"
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
     let birthdayLabel: UILabel = {
         let label = UILabel()
         label.text = "Birthday"
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let birthdayTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "MM/dd/yyyy"
-        textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
@@ -52,7 +48,6 @@ class CreateEmployeeController: UIViewController {
         let sc = UISegmentedControl(items: types)
         sc.selectedSegmentIndex = 0
         sc.tintColor = UIColor.darkBlue
-        sc.translatesAutoresizingMaskIntoConstraints = false
         return sc
     }()
     
@@ -62,6 +57,7 @@ class CreateEmployeeController: UIViewController {
         navigationItem.title = "Create Employee"
         setupCancelButton()
         setupUI()
+        navigationController?.navigationBar.backgroundColor = .lightRed
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
     }
     
@@ -105,35 +101,16 @@ class CreateEmployeeController: UIViewController {
     private func setupUI() {
         _ = setupLightBlueBackgroundView(height: 150)
         
-        view.addSubview(nameLabel)
-        nameLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        nameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        nameLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        [nameLabel, nameTextField, birthdayLabel, birthdayTextField, employeeTypeSegmentedControl].forEach { view.addSubview($0) }
+           
+        nameLabel.anchor(left: view.leftAnchor, top: view.topAnchor, right: nil, bottom: nil, leftPadding: 16, topPadding: 0, rightPadding: 0, bottomPadding: 0, width: 100, height: 50)
         
-        view.addSubview(nameTextField)
-        nameTextField.leftAnchor.constraint(equalTo: nameLabel.rightAnchor).isActive = true
-        nameTextField.topAnchor.constraint(equalTo: nameLabel.topAnchor).isActive = true
-        nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        nameTextField.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
+        nameTextField.anchor(left: nameLabel.rightAnchor, top: nameLabel.topAnchor, right: view.rightAnchor, bottom: nameLabel.bottomAnchor, leftPadding: 0, topPadding: 0, rightPadding: 0, bottomPadding: 0, width: 0, height: 0)
         
-        view.addSubview(birthdayLabel)
-        birthdayLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        birthdayLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
-        birthdayLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        birthdayLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        birthdayLabel.anchor(left: view.leftAnchor, top: nameLabel.bottomAnchor, right: nil, bottom: nil, leftPadding: 16, topPadding: 0, rightPadding: 0, bottomPadding: 0, width: 100, height: 50)
         
-        view.addSubview(birthdayTextField)
-        birthdayTextField.topAnchor.constraint(equalTo: birthdayLabel.topAnchor).isActive = true
-        birthdayTextField.leftAnchor.constraint(equalTo: birthdayLabel.rightAnchor).isActive = true
-        birthdayTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        birthdayTextField.bottomAnchor.constraint(equalTo: birthdayLabel.bottomAnchor).isActive = true
+        birthdayTextField.anchor(left: birthdayLabel.rightAnchor, top: birthdayLabel.topAnchor, right: view.rightAnchor, bottom: birthdayLabel.bottomAnchor, leftPadding: 0, topPadding: 0, rightPadding: 0, bottomPadding: 0, width: 0, height: 0)
         
-        view.addSubview(employeeTypeSegmentedControl)
-        employeeTypeSegmentedControl.topAnchor.constraint(equalTo: birthdayLabel.bottomAnchor, constant: 0).isActive = true
-        employeeTypeSegmentedControl.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
-        employeeTypeSegmentedControl.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16).isActive = true
-        employeeTypeSegmentedControl.heightAnchor.constraint(equalToConstant: 34).isActive = true
-        
+        employeeTypeSegmentedControl.anchor(left: view.leftAnchor, top: birthdayLabel.bottomAnchor, right: view.rightAnchor, bottom: nil, leftPadding: 16, topPadding: 0, rightPadding: 16, bottomPadding: 0, width: 0, height: 34)
     }
 }

@@ -37,6 +37,8 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
             UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(handleDelete))
         ]
         
+        navigationController?.navigationBar.backgroundColor = .lightRed
+        
         tableView.backgroundColor = UIColor.darkBlue
         tableView.register(CompanyCell.self, forCellReuseIdentifier: cellId)
 //        fetchedResultsControler.fetchedObjects?.forEach({ (company) in
@@ -141,6 +143,8 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
             break
         case .update:
             break
+        default:
+            break
         }
     }
     
@@ -154,6 +158,8 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
             tableView.reloadRows(at: [indexPath!], with: .fade)
         case .move:
             tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        default:
+            break
         }
     }
     

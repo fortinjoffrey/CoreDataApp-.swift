@@ -13,7 +13,7 @@ extension CompaniesController: CreateCompanyControllerDelegate {
     //specify your extension methods here ...
     func didEditCompany(company: Company) {
         // update my table view somehow
-        let row = companies.index(of: company)
+        let row = companies.firstIndex(of: company)
         let reloadIndexPath = IndexPath(row: row!, section: 0)
         tableView.reloadRows(at: [reloadIndexPath], with: .middle )
     }
