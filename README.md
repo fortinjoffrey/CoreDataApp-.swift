@@ -1,4 +1,4 @@
-# CoreDataApp-.swift
+# Swift Core Data Sample APP
 Swift App Using CoreData to store persist user data
 
 ## Screenshots
