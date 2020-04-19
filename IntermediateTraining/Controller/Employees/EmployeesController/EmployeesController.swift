@@ -49,8 +49,7 @@ class EmployeesController: UITableViewController {
         createEmployeeController.delegate = self
         createEmployeeController.company = company
         let navController = UINavigationController(rootViewController: createEmployeeController)
-//        viewController.modalPresentationStyle = .overCurrentContext
-        navController.modalPresentationStyle = .fullScreen
+        navController.modalPresentationStyle = .overCurrentContext
         present(navController, animated: true, completion: nil)
     }
 }

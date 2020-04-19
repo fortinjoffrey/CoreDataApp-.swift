@@ -39,7 +39,6 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
         companyImageView.layer.borderWidth = 2
     }
     
-    
     var delegate: CreateCompanyControllerDelegate?
     
     // lazy var enables self to not be nil
@@ -52,7 +51,6 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
     }()
     
     @objc private func handleSelectPhoto() {
-        print("Trying to selef phoot")
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.allowsEditing = true
@@ -64,9 +62,8 @@ class CreateCompanyController: UIViewController, UINavigationControllerDelegate,
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
-
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         
         if let editedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.editedImage)] as? UIImage {
             companyImageView.image = editedImage
@@ -75,10 +72,8 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         }
         
         setupCircularImageStyle()
-        
         dismiss(animated: true, completion: nil)
     }
-    
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -102,19 +97,15 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
         super.viewWillAppear(animated)
         navigationItem.title = company == nil ? "Create Company" : "Edit Company"
    
+        navigationController?.navigationBar.backgroundColor = .lightRed
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.setStatusBarColor(backgroundColor: .lightRed)
-
         setupUI()
-
         setupCancelButton()
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
-
         view.backgroundColor = .darkBlue
     }
 
@@ -174,11 +165,8 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             company.setValue(imageData, forKey: "imageData")
         }
         
-        
-        // perform the save
         do {
             try context.save()
-            // success
             dismiss(animated: true, completion: {
                 self.delegate?.didAddCompany(company: company as! Company)
             })
@@ -186,7 +174,6 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
             print("Failed to save company:", saveErr)
         }
     }
-
 }
 
 // Helper function inserted by Swift 4.2 migrator.

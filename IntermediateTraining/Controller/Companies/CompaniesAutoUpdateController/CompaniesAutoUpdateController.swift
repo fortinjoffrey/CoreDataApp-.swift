@@ -66,7 +66,7 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
         let navController = CustomNavigationController(rootViewController: createCompanyController)
         createCompanyController.delegate = self
         
-        navController.modalPresentationStyle = .fullScreen
+        navController.modalPresentationStyle = .overCurrentContext
         
         present(navController, animated: true, completion: nil)
         
@@ -200,7 +200,7 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
         
         let navController = CustomNavigationController(rootViewController: editCompanyController)
         
-        navController.modalPresentationStyle = .fullScreen
+        navController.modalPresentationStyle = .overCurrentContext
 
         present(navController, animated: true, completion: nil)
         

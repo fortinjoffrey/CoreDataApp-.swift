@@ -31,8 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationBarAppearance = UINavigationBar.appearance()
         
-//        navigationBarAppearance.barStyle = .blackTranslucent
-        navigationBarAppearance.barStyle = .default
+        navigationBarAppearance.barStyle = .blackOpaque
         navigationBarAppearance.tintColor = .white
         navigationBarAppearance.isTranslucent = false
         navigationBarAppearance.barTintColor = .lightRed
