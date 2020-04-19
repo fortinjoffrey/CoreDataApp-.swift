@@ -100,19 +100,20 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-   
         navigationItem.title = company == nil ? "Create Company" : "Edit Company"
+   
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        navigationController?.setStatusBarColor(backgroundColor: .lightRed)
+
         setupUI()
 
         setupCancelButton()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
-        navigationController?.navigationBar.backgroundColor = .lightRed
 
         view.backgroundColor = .darkBlue
     }

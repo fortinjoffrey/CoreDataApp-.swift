@@ -57,6 +57,7 @@ class CreateEmployeeController: UIViewController {
         navigationItem.title = "Create Employee"
         setupCancelButton()
         setupUI()
+        navigationController?.setStatusBarColor(backgroundColor: .lightRed)
         navigationController?.navigationBar.backgroundColor = .lightRed
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(handleSave))
     }

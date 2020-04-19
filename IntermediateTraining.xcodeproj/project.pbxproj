@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DD0AA51B20515C1A00F357D7 /* CompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0AA51A20515C1A00F357D7 /* CompanyCell.swift */; };
 		DD27CD14204EE89500B955A3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD27CD13204EE89500B955A3 /* CoreDataManager.swift */; };
+		DD3F4187244C4E4400CB58D3 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD3F4186244C4E4400CB58D3 /* UINavigationController+.swift */; };
 		DD6673542056B492003FAB48 /* CompaniesAutoUpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6673532056B492003FAB48 /* CompaniesAutoUpdateController.swift */; };
 		DD6C587E244B38AA00CBBEF9 /* CompaniesAutoUpdateController+CreateCompany.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD6C587D244B38AA00CBBEF9 /* CompaniesAutoUpdateController+CreateCompany.swift */; };
 		DD76CDD02052D47D00BD8A21 /* EmployeesController+UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD76CDCF2052D47D00BD8A21 /* EmployeesController+UITableView.swift */; };
@@ -35,6 +36,7 @@
 /* Begin PBXFileReference section */
 		DD0AA51A20515C1A00F357D7 /* CompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyCell.swift; sourceTree = "<group>"; };
 		DD27CD13204EE89500B955A3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		DD3F4186244C4E4400CB58D3 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 		DD6673532056B492003FAB48 /* CompaniesAutoUpdateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesAutoUpdateController.swift; sourceTree = "<group>"; };
 		DD6C587D244B38AA00CBBEF9 /* CompaniesAutoUpdateController+CreateCompany.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CompaniesAutoUpdateController+CreateCompany.swift"; sourceTree = "<group>"; };
 		DD76CDCF2052D47D00BD8A21 /* EmployeesController+UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EmployeesController+UITableView.swift"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				DDCE8F2620519F9D00C89719 /* UIViewController+Helpers.swift */,
 				DD76CDD3205309F100BD8A21 /* IndentedLabel.swift */,
 				DDE6A8E2244B293000ECC284 /* UIView+.swift */,
+				DD3F4186244C4E4400CB58D3 /* UINavigationController+.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				DDF3E7B9204D85EF00D8293D /* CompaniesController.swift in Sources */,
 				DDE6A8E3244B293000ECC284 /* UIView+.swift in Sources */,
 				DD76CDD02052D47D00BD8A21 /* EmployeesController+UITableView.swift in Sources */,
+				DD3F4187244C4E4400CB58D3 /* UINavigationController+.swift in Sources */,
 				DD6673542056B492003FAB48 /* CompaniesAutoUpdateController.swift in Sources */,
 				DD76CDD22052D53500BD8A21 /* EmployeesController+CreateEmployee.swift in Sources */,
 				DDF3E7CD204D9AD300D8293D /* CreateCompanyController.swift in Sources */,

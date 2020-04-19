@@ -33,6 +33,7 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
         view.backgroundColor = .white
 
         
+        navigationController?.setStatusBarColor(backgroundColor: .lightRed)
         navigationItem.title = "Company Auto Updates"
         navigationItem.leftBarButtonItems = [
             UIBarButtonItem(title: "Delete all", style: .plain, target: self, action: #selector(handleDeleteAll))
